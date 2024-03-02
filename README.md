@@ -6,8 +6,8 @@ work on kali linux
 
 ## Installation
 this is a installation tutorial commands:
-1. curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-2. sudo apt update
+1. start with a bismillah
+2. sudo apt update && apt upgrade -y
 3. sudo apt install nodejs
 4. apt install npm
 5. npm -v
