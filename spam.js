@@ -5,8 +5,6 @@
 
 const readline = require("readline");
 const { execSync } = require("child_process");
-const axios = require("axios");
-
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
