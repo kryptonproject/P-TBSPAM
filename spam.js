@@ -4,12 +4,33 @@
  */
 
 const readline = require("readline");
+const { execSync } = require("child_process");
 const axios = require("axios");
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+function checkAndInstallAxios(callback) {
+    try {
+        // Check if axios is installed
+        require.resolve("axios");
+        console.log("axios is already installed.");
+        callback();
+    } catch (error) {
+        // If axios is not installed, install it
+        console.log("axios is not installed. Installing...");
+        try {
+            execSync("npm install axios");
+            console.log("axios has been successfully installed.");
+            callback();
+        } catch (error) {
+            console.error("Failed to install axios:", error.message);
+            process.exit(1);
+        }
+    }
+}
 
 let lastSentTime = 0;
 let messageQueue = [];
@@ -77,3 +98,4 @@ process.on('SIGINT', function() {
 });
 
 promptUser();
+checkAndInstallAxios(promptUser);
