@@ -4,31 +4,13 @@
  */
 
 const readline = require("readline");
-const { execSync } = require("child_process");
+const axios = require("axios")
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-function checkAndInstallAxios(callback) {
-    try {
-        // Check if axios is installed
-        require.resolve("axios");
-        console.log("axios is already installed.");
-        callback();
-    } catch (error) {
-        // If axios is not installed, install it
-        console.log("axios is not installed. Installing...");
-        try {
-            execSync("npm install axios");
-            console.log("axios has been successfully installed.");
-            callback();
-        } catch (error) {
-            console.error("Failed to install axios:", error.message);
-            process.exit(1);
-        }
-    }
-}
+
 
 let lastSentTime = 0;
 let messageQueue = [];
@@ -75,7 +57,7 @@ function promptUser() {
     rl.question("Enter your Telegram bot token: ", function(token) {
         rl.question("Enter your chat ID: ", function(chatId) {
             rl.question("Enter the message text: ", function(text) {
-                rl.question("Enter the messages per second (1-30): ", function(speed) {
+                rl.question("how many message want to sent persecond? (1-30): ", function(speed) {
                     rl.close();
                     if (isNaN(speed) || speed < 1 || speed > 30) {
                         console.error("Invalid messages per second. Please enter a number between 1 and 30.");
@@ -96,4 +78,3 @@ process.on('SIGINT', function() {
 });
 
 promptUser();
-checkAndInstallAxios(promptUser);
