@@ -4,7 +4,7 @@
 
 P-TBSPAM is a tool that can spam a API bot telegram with a messages... tool can spam with 1-30 message persecond.. and this tool is created for take down a scammer, spyware, phishing, that they use their API bot for the their evil business..
 
-work on kali linux
+work on kali linux, parrot os
 (windows and other os is coming soon)
 
 ## Installation
