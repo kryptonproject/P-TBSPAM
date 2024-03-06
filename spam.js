@@ -54,6 +54,7 @@ function displayCredits() {
 ██║░░░░░░░░░░░░░░██║░░░██████╦╝██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║
 ╚═╝░░░░░░░░░░░░░░╚═╝░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝` + "\x1b[0m");
     console.log("Created by: Krypton_43\n");
+    console.log("Version: 0.2\n");
 }
 
 async function promptChatIds() {
@@ -69,7 +70,7 @@ async function promptChatIds() {
         chatIds.push(chatId);
 
         let more = await new Promise((resolve) => {
-            rl.question("Add more chat IDs? (only if the bots sent message to multiple account) (yes/no): ", (answer) => {
+            rl.question("Add more chat IDs? (yes/no): ", (answer) => {
                 resolve(answer.toLowerCase() === 'yes');
             });
         });
