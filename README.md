@@ -9,17 +9,16 @@ work on kali linux, parrot os
 
 ## Installation
 this is a installation tutorial commands:
-1. start with a bismillah
-2. sudo apt update && apt upgrade -y
-3. sudo apt install nodejs
-4. apt install npm
-5. npm -v
-6. node -v
-7. git clone https://github.com/kryptonproject/P-TBSPAM
-8. cd P-TBSPAM
-9. ls
-10. node install.js
-11. node spam.js
+1. sudo apt update && apt upgrade -y
+2. sudo apt install nodejs
+3. apt install npm
+4. npm -v
+5. node -v
+6. git clone https://github.com/kryptonproject/P-TBSPAM
+7. cd P-TBSPAM
+8. ls
+9. node install.js
+10. node spam.js
 
 
 # UPDATE
