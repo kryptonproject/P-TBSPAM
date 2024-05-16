@@ -31,6 +31,6 @@ to update just follow the command:
 
  # UPDATE LOG
  Thursday, 16 May 2024
--spam improvement update
--bot basic info update
--send file update
+1. spam improvement update
+2. bot basic info update
+3. send file update
