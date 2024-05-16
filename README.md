@@ -21,10 +21,16 @@ this is a installation tutorial commands:
 10. node spam.js
 
 
-# UPDATE
+# UPDATE TUTORIAL
 now P-TBSPAM can spam a multiple chat id! (only if the bot has sent a message to multiple telegram account)
 
 to update just follow the command:
 1. cd P-TBSPAM
 2. git pull https://github.com/kryptonproject/P-TBSPAM
 3. and done!
+
+4. # UPDATE LOG
+5. Thursday, 16 May 2024
+6. -spam improvement update
+7. -bot basic info update
+8. -send file update
