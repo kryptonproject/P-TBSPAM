@@ -29,8 +29,8 @@ to update just follow the command:
 2. git pull https://github.com/kryptonproject/P-TBSPAM
 3. and done!
 
-4. # UPDATE LOG
-5. Thursday, 16 May 2024
-6. -spam improvement update
-7. -bot basic info update
-8. -send file update
+ # UPDATE LOG
+ Thursday, 16 May 2024
+-spam improvement update
+-bot basic info update
+-send file update
