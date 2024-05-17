@@ -24,7 +24,7 @@ async function sendMessage(botToken, chatId, message) {
     } catch (error) {
         if (error.response && error.response.status === 429) {
             const retryAfter = error.response.headers['retry-after'];
-            const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
+            const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 60000;
             console.error("\x1b[31m", `Bot is being rate-limited. Retrying after ${waitTime / 1000} seconds.`, "\x1b[0m");
             setTimeout(() => sendMessage(botToken, chatId, message), waitTime);
         } else {
@@ -112,30 +112,7 @@ function displayCredits() {
 ██║░░░░░░░░░░░░░░██║░░░██████╦╝██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║
 ╚═╝░░░░░░░░░░░░░░╚═╝░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝` + "\x1b[0m");
     console.log("Created by: Krypton_43\n");
-    console.log("Version: 2.0\n");
-}
-
-async function promptChatIds() {
-    const chatIds = [];
-    let addMore = true;
-
-    while (addMore) {
-        let chatId = await new Promise((resolve) => {
-            rl.question("Enter Target chat ID: ", (answer) => {
-                resolve(answer);
-            });
-        });
-        chatIds.push(chatId);
-
-        let more = await new Promise((resolve) => {
-            rl.question("Add more chat IDs? (yes/no): ", (answer) => {
-                resolve(answer.toLowerCase() === 'yes');
-            });
-        });
-        addMore = more;
-    }
-
-    return chatIds;
+    console.log("Version: 0.3\n");
 }
 
 async function promptUser() {
@@ -146,7 +123,11 @@ async function promptUser() {
         });
     });
 
-    const chatIds = await promptChatIds();
+    const chatId = await new Promise((resolve) => {
+        rl.question("Enter Target chat ID: ", (answer) => {
+            resolve(answer);
+        });
+    });
 
     const menuChoice = await new Promise((resolve) => {
         rl.question("Choose an option:\n1. Spam\n2. Bot Info\n3. Send File\noptions > ", (answer) => {
@@ -160,22 +141,15 @@ async function promptUser() {
                 resolve(answer);
             });
         });
-        
-        const speed = await new Promise((resolve) => {
-            rl.question("How many messages do you want to send per second? (1-30): ", (answer) => {
-                const num = parseInt(answer);
-                resolve(isNaN(num) || num < 1 || num > 30 ? 1 : num);
-            });
-        });
 
         rl.close();
 
-        chatIds.forEach((chatId) => {
-            setInterval(() => {
-                messageQueue.push({ botToken, chatId, text, speed });
-                processQueue();
-            }, 1000 / speed);
-        });
+        (function spamMessages() {
+            messageQueue.push({ botToken, chatId, text });
+            processQueue();
+            setImmediate(spamMessages);
+        })();
+
     } else if (menuChoice === '2') {
         await getBotInfo(botToken);
         rl.close();
@@ -190,9 +164,7 @@ async function promptUser() {
                 resolve(answer);
             });
         });
-        for (const chatId of chatIds) {
-            await sendFile(botToken, chatId, filePath, caption);
-        }
+        await sendFile(botToken, chatId, filePath, caption);
         rl.close();
     } else {
         console.log("Invalid choice. Exiting...");
@@ -205,7 +177,7 @@ function processQueue() {
 
     processing = true;
     const { botToken, chatId, text } = messageQueue.shift();
-    sendMessage(botToken, chatId, { text, speed: 1 }).then(() => {
+    sendMessage(botToken, chatId, { text }).then(() => {
         processing = false;
         processQueue();
     });
