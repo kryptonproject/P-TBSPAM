@@ -2,10 +2,10 @@
 !!!This script is for educational purposes only and may not be used for any other purpose!!!
 
 
-P-TBSPAM is a tool that can spam a API bot telegram with a messages... tool can spam with 1-30 message persecond.. and this tool is created for take down a scammer, spyware, phishing, that they use their API bot for the their evil business..
+P-TBSPAM is a tool that can spam a API bot telegram with a messages. and this tool is created for take down a scammer, spyware, phishing, that they use their API bot for the their evil business.. (for more information about this phishing attack you guys can see this article https://www.mycert.org.my/portal/advisory?id=MA-976.102023)
 
-work on kali linux, parrot os
-(windows and other os is coming soon)
+work on kali linux, parrot, windows
+(android/termux and other os is coming soon)
 
 ## Installation
 this is a installation tutorial commands:
@@ -22,15 +22,14 @@ this is a installation tutorial commands:
 
 
 # UPDATE TUTORIAL
-now P-TBSPAM can spam a multiple chat id! (only if the bot has sent a message to multiple telegram account)
-
 to update just follow the command:
 1. cd P-TBSPAM
 2. git pull https://github.com/kryptonproject/P-TBSPAM
 3. and done!
 
  # UPDATE LOG
- Thursday, 16 May 2024
+ saturday, 18 May 2024
 1. spam improvement update
 2. bot basic info update
 3. send file update
+4. chat id basic info update
