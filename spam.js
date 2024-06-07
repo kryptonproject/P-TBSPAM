@@ -3,4 +3,259 @@
  * Author: KryptonSec_My
  */
 
-const _0x281985=_0x5d9b;(function(_0x184122,_0x4362cf){const _0x2697e0=_0x5d9b,_0x5c7396=_0x184122();while(!![]){try{const _0x5b2056=parseInt(_0x2697e0(0xf8))/0x1*(parseInt(_0x2697e0(0x111))/0x2)+-parseInt(_0x2697e0(0x117))/0x3+parseInt(_0x2697e0(0x104))/0x4+parseInt(_0x2697e0(0xe2))/0x5*(parseInt(_0x2697e0(0x108))/0x6)+parseInt(_0x2697e0(0x102))/0x7+-parseInt(_0x2697e0(0x112))/0x8+-parseInt(_0x2697e0(0x122))/0x9;if(_0x5b2056===_0x4362cf)break;else _0x5c7396['push'](_0x5c7396['shift']());}catch(_0x178cf7){_0x5c7396['push'](_0x5c7396['shift']());}}}(_0x22a1,0x9ff8d));const readline=require(_0x281985(0x128)),axios=require('axios'),fs=require('fs'),FormData=require(_0x281985(0x101)),rl=readline[_0x281985(0x116)]({'input':process[_0x281985(0x115)],'output':process['stdout']});let messageQueue=[],processing=![];async function sendMessage(_0x14454c,_0x4677bf,_0x31b418){const _0x4fec52=_0x281985,_0x2aff2d=_0x4fec52(0xd9)+_0x14454c+_0x4fec52(0xf1)+_0x4677bf+_0x4fec52(0x10c)+encodeURIComponent(_0x31b418['text']);try{const _0x23bda0=await axios['get'](_0x2aff2d);console[_0x4fec52(0x120)](_0x23bda0[_0x4fec52(0x11d)]);}catch(_0x36809e){if(_0x36809e[_0x4fec52(0xe9)]&&_0x36809e['response']['status']===0x1ad){const _0x4931e5=_0x36809e['response']['headers'][_0x4fec52(0xdd)],_0x3a5dc9=_0x4931e5?parseInt(_0x4931e5)*0x3e8:0xea60;console[_0x4fec52(0x120)](_0x4fec52(0xe0),'Bot\x20is\x20down.\x20Retrying\x20after\x20'+_0x3a5dc9/0x3e8+_0x4fec52(0x118),_0x4fec52(0x11b)),setTimeout(()=>sendMessage(_0x14454c,_0x4677bf,_0x31b418),_0x3a5dc9);}else console['log'](_0x4fec52(0xfe)+_0x36809e[_0x4fec52(0xf3)]);}}async function getBotInfo(_0x72c144){const _0x455fd1=_0x281985,_0x42b2fd='https://api.telegram.org/bot'+_0x72c144+_0x455fd1(0x124);try{const _0x481f93=await axios[_0x455fd1(0x106)](_0x42b2fd),_0x4cf821=_0x481f93[_0x455fd1(0x11d)][_0x455fd1(0xfd)];console[_0x455fd1(0x120)](_0x455fd1(0x126)+_0x4cf821['id']+_0x455fd1(0xda)+_0x4cf821['first_name']+_0x455fd1(0xe6)+_0x4cf821[_0x455fd1(0x11f)]),await getBotProfilePhotos(_0x72c144,_0x4cf821['id']),await getBotPrivacySettings(_0x72c144);}catch(_0xf0257b){console[_0x455fd1(0x120)](_0x455fd1(0xe0),_0x455fd1(0xee)+_0xf0257b[_0x455fd1(0xf3)],_0x455fd1(0x11b));}await promptOptions(_0x72c144);}async function getBotProfilePhotos(_0xc6598d,_0xf7a6c0){const _0x4e68b4=_0x281985,_0x2af37a=_0x4e68b4(0xd9)+_0xc6598d+'/getUserProfilePhotos?user_id='+_0xf7a6c0+_0x4e68b4(0x129);try{const _0x40fe64=await axios['get'](_0x2af37a),_0x487544=_0x40fe64[_0x4e68b4(0x11d)][_0x4e68b4(0xfd)][_0x4e68b4(0xdc)];if(_0x487544[_0x4e68b4(0xfc)]>0x0){const _0x536b08=_0x487544[0x0][0x0]['file_id'];console['log']('Profile\x20Photo\x20File\x20ID:\x20'+_0x536b08);}else console['log'](_0x4e68b4(0xe0),_0x4e68b4(0xf4),_0x4e68b4(0x11b));}catch(_0xb2c63e){console['log']('\x1b[31m',_0x4e68b4(0xf7),_0x4e68b4(0x11b));}}async function getBotPrivacySettings(_0x7953c){const _0x55d6fa=_0x281985,_0x1444f5=_0x55d6fa(0xd9)+_0x7953c+_0x55d6fa(0x10a);try{const _0x185f5a=await axios[_0x55d6fa(0x106)](_0x1444f5),_0x3a9186=_0x185f5a['data'][_0x55d6fa(0xfd)];console[_0x55d6fa(0x120)](_0x55d6fa(0xec)),_0x3a9186[_0x55d6fa(0x10f)](_0x56b3f2=>{const _0x39dce5=_0x55d6fa;console['log'](_0x39dce5(0x11c)+_0x56b3f2[_0x39dce5(0xf0)]+_0x39dce5(0xf2)+_0x56b3f2[_0x39dce5(0x11e)]);});}catch(_0x5122c4){console[_0x55d6fa(0x120)](_0x55d6fa(0xe0),_0x55d6fa(0xea)+_0x5122c4[_0x55d6fa(0xf3)],_0x55d6fa(0x11b));}}function _0x5d9b(_0x5756d4,_0x2eb3fd){const _0x22a106=_0x22a1();return _0x5d9b=function(_0x5d9bd3,_0x1145d9){_0x5d9bd3=_0x5d9bd3-0xd9;let _0x5bc281=_0x22a106[_0x5d9bd3];return _0x5bc281;},_0x5d9b(_0x5756d4,_0x2eb3fd);}async function getChatInfo(_0x26ac8e,_0x586a4b){const _0x53c554=_0x281985,_0x404d2e='https://api.telegram.org/bot'+_0x26ac8e+'/getChat?chat_id='+_0x586a4b;try{const _0x1288c0=await axios[_0x53c554(0x106)](_0x404d2e),_0x4fcd15=_0x1288c0[_0x53c554(0x11d)][_0x53c554(0xfd)];console[_0x53c554(0x120)](_0x53c554(0x121)+_0x4fcd15['id']+_0x53c554(0x113)+_0x4fcd15[_0x53c554(0xdb)]+'\x0aTitle:\x20'+(_0x4fcd15[_0x53c554(0x107)]||_0x53c554(0x10d))+_0x53c554(0xe6)+(_0x4fcd15[_0x53c554(0x11f)]||_0x53c554(0x10d))+_0x53c554(0xf6)+(_0x4fcd15['first_name']||_0x53c554(0x10d))+_0x53c554(0x114)+(_0x4fcd15[_0x53c554(0xde)]||_0x53c554(0x10d))+_0x53c554(0x11a)+(_0x4fcd15['description']||'N/A'));}catch(_0x45b11c){console[_0x53c554(0x120)](_0x53c554(0xe0),_0x53c554(0xe8)+_0x45b11c[_0x53c554(0xf3)],_0x53c554(0x11b));}await promptOptions(_0x26ac8e);}async function sendFile(_0x11b551,_0x31ff7d,_0x420475,_0x197ef4){const _0x5f4d0a=_0x281985,_0x1ac6cc=_0x5f4d0a(0xd9)+_0x11b551+_0x5f4d0a(0xe3),_0x54ad50=new FormData();_0x54ad50[_0x5f4d0a(0xf5)](_0x5f4d0a(0xfb),_0x31ff7d),_0x54ad50[_0x5f4d0a(0xf5)]('document',fs[_0x5f4d0a(0x10e)](_0x420475));_0x197ef4&&_0x54ad50['append'](_0x5f4d0a(0x125),_0x197ef4);try{const _0x5173a9=await axios[_0x5f4d0a(0x10b)](_0x1ac6cc,_0x54ad50,{'headers':_0x54ad50[_0x5f4d0a(0xe1)]()});console['log']('File\x20sent\x20successfully.');}catch(_0x4edfff){console[_0x5f4d0a(0x120)](_0x5f4d0a(0xe0),_0x5f4d0a(0x109)+_0x4edfff[_0x5f4d0a(0xf3)],'\x1b[31m');}}async function promptOptions(_0x51d035){const _0x243509=_0x281985,_0x2ee8fd=await new Promise(_0x496627=>{const _0x55305c=_0x5d9b;rl[_0x55305c(0x105)](_0x55305c(0x119),_0x528f48=>{_0x496627(_0x528f48);});}),_0x15ffd7=await new Promise(_0x558069=>{const _0x557265=_0x5d9b;rl['question'](_0x557265(0xdf),_0x1ea32e=>{_0x558069(_0x1ea32e);});});if(_0x15ffd7==='1'){const _0x261094=await new Promise(_0x2d8cba=>{const _0x37c642=_0x5d9b;rl[_0x37c642(0x105)](_0x37c642(0x103),_0x1bafb4=>{_0x2d8cba(_0x1bafb4);});});rl['close'](),startSpamming(_0x51d035,_0x2ee8fd,_0x261094);}else{if(_0x15ffd7==='2')await getBotInfo(_0x51d035);else{if(_0x15ffd7==='3'){const _0x42f7a3=await new Promise(_0xfe916a=>{const _0x2cf0f1=_0x5d9b;rl[_0x2cf0f1(0x105)]('Enter\x20the\x20path\x20to\x20the\x20file:\x20',_0x59eaff=>{_0xfe916a(_0x59eaff);});}),_0x37957e=await new Promise(_0x422136=>{const _0x136afb=_0x5d9b;rl[_0x136afb(0x105)]('Enter\x20the\x20caption\x20for\x20the\x20file\x20(optional):\x20',_0x5a6187=>{_0x422136(_0x5a6187);});});await sendFile(_0x51d035,_0x2ee8fd,_0x42f7a3,_0x37957e),rl[_0x243509(0xeb)]();}else _0x15ffd7==='4'?await getChatInfo(_0x51d035,_0x2ee8fd):(console[_0x243509(0x120)](_0x243509(0xe0),_0x243509(0x123),'\x1b[32m'),rl['close']());}}}function _0x22a1(){const _0x670640=['\x0aDescription:\x20','\x1b[32m','Command:\x20/','data','description','username','log','Chat\x20Information:\x0aID:\x20','5096133MPxSmK','Invalid\x20choice.\x20Exiting...','/getMe','caption','Bot\x20Information:\x0aID:\x20','Version:\x202.0\x0a','readline','&limit=1','https://api.telegram.org/bot','\x0aName:\x20','type','photos','retry-after','last_name','Choose\x20an\x20option:\x0a1.\x20Spam\x0a2.\x20Bot\x20Info\x0a3.\x20Send\x20File\x0a4.\x20Chat\x20Info\x0aoptions\x20>\x20','\x1b[31m','getHeaders','20lIMZuO','/sendDocument','then','Created\x20by:\x20KryptonSec_My\x0a','\x0aUsername:\x20@','shift','Error\x20fetching\x20chat\x20info:\x20','response','Error\x20fetching\x20bot\x20commands:\x20','close','Bot\x20Commands:','github:\x20https://github.com/kryptonproject\x0a','Error\x20fetching\x20bot\x20info:\x20','SIGINT','command','/sendMessage?parse_mode=Markdown&chat_id=','\x20-\x20','message','No\x20profile\x20photos\x20found.','append','\x0aFirst\x20Name:\x20','Error\x20fetching\x20profile\x20photos:\x20${error.message}','190053KjProg','\x1b[91m','Enter\x20Target\x20Telegram\x20bot\x20token:\x20','chat_id','length','result','Error:\x20','\x1b[0m','Thanks\x20for\x20using\x20this\x20tool!','form-data','6452397zkTwnh','Enter\x20the\x20message\x20text:\x20','4137884gGojNx','question','get','title','19794llFlcT','Error\x20sending\x20file:\x20','/getMyCommands','post','&text=','N/A','createReadStream','forEach','\x0a██████╗░░░░░░░████████╗██████╗░░██████╗██████╗░░█████╗░███╗░░░███╗\x0a██╔══██╗░░░░░░╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██╔══██╗████╗░████║\x0a██████╔╝█████╗░░░██║░░░██████╦╝╚█████╗░██████╔╝███████║██╔████╔██║\x0a██╔═══╝░╚════╝░░░██║░░░██╔══██╗░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║\x0a██║░░░░░░░░░░░░░░██║░░░██████╦╝██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║\x0a╚═╝░░░░░░░░░░░░░░╚═╝░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝','10bHTPHp','5641200uQgmap','\x0aType:\x20','\x0aLast\x20Name:\x20','stdin','createInterface','2979213XKmGiw','\x20seconds.','Enter\x20Target\x20chat\x20ID:\x20'];_0x22a1=function(){return _0x670640;};return _0x22a1();}function processQueue(){const _0x3a32aa=_0x281985;if(processing||messageQueue[_0x3a32aa(0xfc)]===0x0)return;processing=!![];const {botToken:_0x72a5c9,chatId:_0x5f4660,text:_0x51baa2}=messageQueue[_0x3a32aa(0xe7)]();sendMessage(_0x72a5c9,_0x5f4660,{'text':_0x51baa2})[_0x3a32aa(0xe4)](()=>{processing=![],processQueue();});}function startSpamming(_0x32cc24,_0x34976d,_0x4018f7){setInterval(()=>{messageQueue['push']({'botToken':_0x32cc24,'chatId':_0x34976d,'text':_0x4018f7}),processQueue();},0x1);}function displayCredits(){const _0x5fdd27=_0x281985;console[_0x5fdd27(0x120)](_0x5fdd27(0x11b)+_0x5fdd27(0x110)+_0x5fdd27(0x11b)),console[_0x5fdd27(0x120)](_0x5fdd27(0xf9),_0x5fdd27(0xe5),_0x5fdd27(0xff)),console[_0x5fdd27(0x120)](_0x5fdd27(0xf9),_0x5fdd27(0xed),_0x5fdd27(0xff)),console[_0x5fdd27(0x120)](_0x5fdd27(0xf9),_0x5fdd27(0x127),_0x5fdd27(0x11b));}async function promptUser(){displayCredits();const _0x54d8cb=await new Promise(_0x570109=>{const _0x354f70=_0x5d9b;rl[_0x354f70(0x105)](_0x354f70(0xfa),_0x2e78a2=>{_0x570109(_0x2e78a2);});});await promptOptions(_0x54d8cb);}process['on'](_0x281985(0xef),function(){const _0x36fba4=_0x281985;console[_0x36fba4(0x120)](_0x36fba4(0x100)),process['exit']();}),promptUser();
+require('./setup.js');
+const readline = require("readline");
+const axios = require("axios");
+const fs = require("fs");
+const FormData = require("form-data");
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const { exec } =require('child_process');
+
+const argv = yargs(hideBin(process.argv)).option('t', {
+    alias: 'token',
+    describe: 'Telegram bot token',
+    type: 'string',
+    demandOption: true
+}).option('c', {
+    alias: 'chatid',
+    describe: 'Target chat ID',
+    type: 'string',
+    demandOption: true
+})
+.version('2.5')
+.alias('version', 'v')
+.argv;
+
+const currentVersion = '2.5';
+
+async function checkForUpdates() {
+    const repository = 'kryptonproject/P-TBSPAM'
+    const url = `https://api.github.com/repos/${repository}/releases/latest`;
+
+    try {
+        const response = await axios.get(url);
+        const latestVersion = response.data.tag_name;
+    if (latestVersion !== currentversion) {
+        console.log("Updating To Version" + latestVersion + "...");
+        exec('git pull', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+            console.log("Update complete! Please restart the script,");
+            process.exit();
+        });
+    } else {
+        console.log("You are using the latest version.");
+    }
+    } catch (error) {
+        console.error("Failed to check for updates:", error);
+    }
+}
+
+async function promptUser() {
+    await checkForUpdates();
+    displayCredits();
+    const botToken = argv.token;
+    const chatId = argv.chatid;
+
+    await promptOptions(botToken, chatId);
+}
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let messageQueue = [];
+let processing = false;
+
+async function sendMessage(botToken, chatId, message) {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?parse_mode=Markdown&chat_id=${chatId}&text=${encodeURIComponent(message.text)}`;
+
+    try {
+        const response = await axios.get(url);
+        console.log(response.data);
+    } catch (error) {
+        if (error.response && error.response.status === 429) {
+            const retryAfter = error.response.headers['retry-after'];
+            const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 60000;
+            console.log('\x1b[31m', `Bot is down. Retrying after ${waitTime / 1000} seconds.` ,'\x1b[32m');
+            setTimeout(() => sendMessage(botToken, chatId, message), waitTime);
+        } else {
+            console.log(`Error: ${error.message}`);
+        }
+    }
+}
+
+async function getBotInfo(botToken) {
+    const url = `https://api.telegram.org/bot${botToken}/getMe`;
+
+    try {
+        const response = await axios.get(url);
+        const botInfo = response.data.result;
+        console.log(JSON.stringify(botInfo, null, 2));
+        await getBotProfilePhotos(botToken, botInfo.id);
+        await getBotPrivacySettings(botToken);
+    } catch (error) {
+        console.log('\x1b[31m', `Error fetching bot info: ${error.message}` ,'\x1b[32m');
+    }
+    await promptOptions(botToken);
+}
+
+async function getBotProfilePhotos(botToken, botId) {
+    const url = `https://api.telegram.org/bot${botToken}/getUserProfilePhotos?user_id=${botId}&limit=1`;
+
+    try {
+        const response = await axios.get(url);
+        const photos = response.data.result.photos;
+        if (photos.length > 0) {
+            const fileId = photos[0][0].file_id;
+            console.log(`Profile Photo File ID: ${fileId}`);
+        } else {
+            console.log('\x1b[31m', 'No profile photos found.' ,'\x1b[32m');
+        }
+    } catch (error) {
+        console.log('\x1b[31m', 'Error fetching profile photos: ${error.message}' ,'\x1b[32m');
+    }
+}
+
+async function getBotPrivacySettings(botToken) {
+    const url = `https://api.telegram.org/bot${botToken}/getMyCommands`;
+
+    try {
+        const response = await axios.get(url);
+        const commands = response.data.result;
+        console.log("Bot Commands:");
+        commands.forEach(command => {
+            console.log(`Command: /${command.command} - ${command.description}`);
+        });
+    } catch (error) {
+        console.log('\x1b[31m', `Error fetching bot commands: ${error.message}` ,'\x1b[32m');
+    }
+}
+
+async function getChatInfo(botToken, chatId) {
+    const url = `https://api.telegram.org/bot${botToken}/getChat?chat_id=${chatId}`;
+
+    try {
+        const response = await axios.get(url);
+        const chatInfo = response.data.result;
+        console.log(JSON.stringify(chatInfo, null, 2));
+    } catch (error) {
+        console.log('\x1b[31m', `Error fetching chat info: ${error.message}` ,'\x1b[32m');
+    }
+    await promptOptions(botToken);
+}
+
+async function sendFile(botToken, chatId, filePath, caption) {
+    const url = `https://api.telegram.org/bot${botToken}/sendDocument`;
+    const form = new FormData();
+    form.append("chat_id", chatId);
+    form.append("document", fs.createReadStream(filePath));
+    if (caption) {
+        form.append("caption", caption);
+    }
+
+    try {
+        const response = await axios.post(url, form, { headers: form.getHeaders() });
+        console.log("File sent successfully.");
+    } catch (error) {
+        console.log('\x1b[31m', `Error sending file: ${error.message}` ,'\x1b[31m');
+    }
+}
+
+async function promptOptions(botToken, chatId) {
+    const menuChoice = await new Promise((resolve) => {
+        rl.question("Choose an option:\n1. Spam\n2. Bot Info\n3. Send File\n4. Chat Info\noptions > ", (answer) => {
+            resolve(answer);
+        });
+    });
+
+    if (menuChoice === '1') {
+        const text = await new Promise((resolve) => {
+            rl.question("Enter the message text: ", (answer) => {
+                resolve(answer);
+            });
+        });
+
+        rl.close();
+        startSpamming(botToken, chatId, text);
+    } else if (menuChoice === '2') {
+        await getBotInfo(botToken);
+    } else if (menuChoice === '3') {
+        const filePath = await new Promise((resolve) => {
+            rl.question("Enter the path to the file: ", (answer) => {
+                resolve(answer);
+            });
+        });
+        const caption = await new Promise((resolve) => {
+            rl.question("Enter the caption for the file (optional): ", (answer) => {
+                resolve(answer);
+            });
+        });
+        await sendFile(botToken, chatId, filePath, caption);
+        rl.close();
+    } else if (menuChoice === '4') {
+        await getChatInfo(botToken, chatId);
+    } else {
+        console.log('\x1b[31m', "Invalid choice. Exiting..." ,'\x1b[32m');
+        rl.close();
+    }
+}
+
+function processQueue() {
+    if (processing || messageQueue.length === 0) return;
+
+    processing = true;
+    const { botToken, chatId, text } = messageQueue.shift();
+    sendMessage(botToken, chatId, { text }).then(() => {
+        processing = false;
+        processQueue();
+    });
+}
+
+function startSpamming(botToken, chatId, text) {
+    const interval = 10;
+    setInterval(() => {
+      if (messageQueue.length < 10) {
+        messageQueue.push({
+          'botToken': botToken,
+          'chatId': chatId,
+          'text': text
+        });
+        processQueue();
+      }
+    }, interval);
+}
+
+function displayCredits() {
+    console.log("\x1b[32m" + `
+██████╗░░░░░░░████████╗██████╗░░██████╗██████╗░░█████╗░███╗░░░███╗
+██╔══██╗░░░░░░╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██╔══██╗████╗░████║
+██████╔╝█████╗░░░██║░░░██████╦╝╚█████╗░██████╔╝███████║██╔████╔██║
+██╔═══╝░╚════╝░░░██║░░░██╔══██╗░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║
+██║░░░░░░░░░░░░░░██║░░░██████╦╝██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║
+╚═╝░░░░░░░░░░░░░░╚═╝░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝` + "\x1b[32m");
+    console.log('\x1b[91m', "Created by: KryptonSec_My\n" ,'\x1b[0m');
+    console.log('\x1b[91m', "github: https://github.com/kryptonproject\n" ,'\x1b[0m')
+    console.log('\x1b[91m', "Version: 2.5\n" ,'\x1b[0m');
+}
+
+async function promptUser() {
+    displayCredits();
+    const botToken = argv.token;
+    const chatId = argv.chatid;
+
+    await promptOptions(botToken, chatId);
+}
+
+process.on('SIGINT', function () {
+    console.log("Thanks for using this tool!");
+    process.exit();
+});
+
+promptUser();
