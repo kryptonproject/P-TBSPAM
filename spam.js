@@ -254,7 +254,7 @@ function displayCredits() {
 ` + "\x1b[32m");
     console.log('\x1b[91m', "Created by: KryptonSec_My\n" ,'\x1b[0m');
     console.log('\x1b[91m', "github: https://github.com/kryptonproject\n" ,'\x1b[0m')
-    console.log('\x1b[91m', "Version: 2.5\n" ,'\x1b[0m');
+    console.log('\x1b[91m', "Version: 2.6\n" ,'\x1b[0m');
 }
 
 async function promptUser() {
