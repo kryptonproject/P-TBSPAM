@@ -31,7 +31,7 @@ const currentVersion = '2.6';
 
 async function checkForUpdates() {
     const repository = 'kryptonproject/P-TBSPAM'
-    const url = `https://api.github.com/repos/${repository}/releases/latest`;
+    const url = `https://api.github.com/kryptonproject/P-TBSPAM/releases/latest`;
 
     try {
         const response = await axios.get(url);
