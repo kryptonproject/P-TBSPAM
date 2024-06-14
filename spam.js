@@ -16,18 +16,18 @@ const argv = yargs(hideBin(process.argv)).option('t', {
     alias: 'token',
     describe: 'Telegram bot token',
     type: 'string',
-    demandOption: true
+    demandOption: true // This makes the token argument required
 }).option('c', {
     alias: 'chatid',
     describe: 'Target chat ID',
     type: 'string',
-    demandOption: true
+    demandOption: true // This makes the chatid argument required
 })
-.version('2.5')
+.version('2.6')
 .alias('version', 'v')
 .argv;
 
-const currentVersion = '2.5';
+const currentVersion = '2.6';
 
 async function checkForUpdates() {
     const repository = 'kryptonproject/P-TBSPAM'
@@ -36,7 +36,7 @@ async function checkForUpdates() {
     try {
         const response = await axios.get(url);
         const latestVersion = response.data.tag_name;
-    if (latestVersion !== currentversion) {
+    if (latestVersion !== currentVersion) {
         console.log("Updating To Version" + latestVersion + "...");
         exec('git pull', (error, stdout, stderr) => {
             if (error) {
@@ -74,24 +74,29 @@ let messageQueue = [];
 let processing = false;
 
 async function sendMessage(botToken, chatId, message) {
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage?parse_mode=Markdown&chat_id=${chatId}&text=${encodeURIComponent(message.text)}`;
+    const text = encodeURIComponent(message.text);
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?parse_mode=HTML&chat_id=${chatId}&text=${text}`;
 
     try {
         const response = await axios.get(url);
         console.log(response.data);
     } catch (error) {
-        if (error.response && error.response.status === 429) {
-            const retryAfter = error.response.headers['retry-after'];
-            const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 60000;
-            console.log('\x1b[31m', `Bot is down. Retrying after ${waitTime / 1000} seconds.` ,'\x1b[32m');
-            setTimeout(() => sendMessage(botToken, chatId, message), waitTime);
+        if (error.response) {
+            console.log('\x1b[31m', `Error: ${error.response.status} - ${error.response.data.description}`, '\x1b[0m');
+            if (error.response.status === 429) {
+                const retryAfter = error.response.headers['retry-after'];
+                const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 60000;
+                console.log('\x1b[31m', `Rate limit exceeded. Retrying after ${waitTime / 1000} seconds.`, '\x1b[0m');
+                setTimeout(() => sendMessage(botToken, chatId, message), waitTime);
+            }
         } else {
-            console.log(`Error: ${error.message}`);
+            console.log('\x1b[31m', `Network or other error: ${error.message}`, '\x1b[0m');
         }
     }
 }
 
-async function getBotInfo(botToken) {
+// Modify the function definition to accept chatId
+async function getBotInfo(botToken, chatId) {
     const url = `https://api.telegram.org/bot${botToken}/getMe`;
 
     try {
@@ -100,10 +105,10 @@ async function getBotInfo(botToken) {
         console.log(JSON.stringify(botInfo, null, 2));
         await getBotProfilePhotos(botToken, botInfo.id);
         await getBotPrivacySettings(botToken);
+        await promptOptions(botToken, chatId); // Now chatId is defined
     } catch (error) {
         console.log('\x1b[31m', `Error fetching bot info: ${error.message}` ,'\x1b[32m');
     }
-    await promptOptions(botToken);
 }
 
 async function getBotProfilePhotos(botToken, botId) {
@@ -140,15 +145,21 @@ async function getBotPrivacySettings(botToken) {
 
 async function getChatInfo(botToken, chatId) {
     const url = `https://api.telegram.org/bot${botToken}/getChat?chat_id=${chatId}`;
+    console.log(`Using botToken: ${botToken}, chatId: ${chatId}`);
+    console.log(`Fetching chat info with URL: ${url}`);
 
     try {
         const response = await axios.get(url);
+        console.log("Response:", JSON.stringify(response.data, null, 2));
         const chatInfo = response.data.result;
-        console.log(JSON.stringify(chatInfo, null, 2));
+        
     } catch (error) {
-        console.log('\x1b[31m', `Error fetching chat info: ${error.message}` ,'\x1b[32m');
+        console.error('\x1b[31m', `Error fetching chat info: ${error.message}`, '\x1b[0m');
+        if (error.response) {
+            console.error("Detailed error response:", JSON.stringify(error.response.data, null, 2));
+        }
     }
-    await promptOptions(botToken);
+    await promptOptions(botToken, chatId); // Ensure chatId is passed if needed
 }
 
 async function sendFile(botToken, chatId, filePath, caption) {
@@ -185,7 +196,7 @@ async function promptOptions(botToken, chatId) {
         rl.close();
         startSpamming(botToken, chatId, text);
     } else if (menuChoice === '2') {
-        await getBotInfo(botToken);
+        await getBotInfo(botToken, chatId); // Pass chatId here
     } else if (menuChoice === '3') {
         const filePath = await new Promise((resolve) => {
             rl.question("Enter the path to the file: ", (answer) => {
@@ -234,12 +245,13 @@ function startSpamming(botToken, chatId, text) {
 
 function displayCredits() {
     console.log("\x1b[32m" + `
-██████╗░░░░░░░████████╗██████╗░░██████╗██████╗░░█████╗░███╗░░░███╗
-██╔══██╗░░░░░░╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██╔══██╗████╗░████║
-██████╔╝█████╗░░░██║░░░██████╦╝╚█████╗░██████╔╝███████║██╔████╔██║
-██╔═══╝░╚════╝░░░██║░░░██╔══██╗░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║
-██║░░░░░░░░░░░░░░██║░░░██████╦╝██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║
-╚═╝░░░░░░░░░░░░░░╚═╝░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝` + "\x1b[32m");
+  ____     _____ ____ ____  ____   _    __  __ 
+ |  _ \   |_   _| __ ) ___||  _ \ / \  |  \/  |
+ | |_) |____| | |  _ \___ \| |_) / _ \ | |\/| |
+ |  __/_____| | | |_) |__) |  __/ ___ \| |  | |
+ |_|        |_| |____/____/|_| /_/   \_\_|  |_|
+                                               
+` + "\x1b[32m");
     console.log('\x1b[91m', "Created by: KryptonSec_My\n" ,'\x1b[0m');
     console.log('\x1b[91m', "github: https://github.com/kryptonproject\n" ,'\x1b[0m')
     console.log('\x1b[91m', "Version: 2.5\n" ,'\x1b[0m');
@@ -259,3 +271,4 @@ process.on('SIGINT', function () {
 });
 
 promptUser();
+
